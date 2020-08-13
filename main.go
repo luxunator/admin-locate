@@ -19,7 +19,6 @@ var verbose bool
 var wait int
 var NoContext bool
 var wg sync.WaitGroup
-var count int
 
 func init() {
 	flag.StringVar(&target, "target", "", "Target Url")
@@ -68,12 +67,11 @@ func request(target_url string, path string) error {
 				fmt.Println("Error Reading Body Length")
 				return err
 			}
-			fmt.Println(target_url, count+1, response.StatusCode, len(body))
+			fmt.Println(target_url, response.StatusCode, len(body))
 		} else {
-			fmt.Println(target_url, count+1)
+			fmt.Println(target_url)
 		}		
 	}
-	count+=1
 	wg.Done()
 	return nil
 }
